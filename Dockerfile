@@ -8,7 +8,7 @@
 #COPY ./sql_scripts /docker-entrypoint-initdb.d/
 
 
-FROM mysql:latest as builder
+FROM mysql:5.7 as builder
 
 # That file does the DB initialization but also runs mysql daemon, by removing the last line it will only init
 RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
@@ -28,6 +28,6 @@ COPY sql_scripts/ /docker-entrypoint-initdb.d/
 #       it has been declared, those changes will be discarded.
 RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db"]
 
-FROM mysql:latest
+FROM mysql:5.7
 
 COPY --from=builder /initialized-db /var/lib/mysql
