@@ -12,14 +12,15 @@ node {
          * docker build on the command line */
                 docker.withServer('tcp://13.58.59.209:2375') {
                     app = docker.build("alesblaze/customsql")
-                    sh 'built image'
+                    app.inside {
+                        sh 'echo "built image"'
+                    }
                 }
     }
 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
-
         app.inside {
             sh 'echo "Tests passed"'
         }
