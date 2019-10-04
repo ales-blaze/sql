@@ -10,8 +10,14 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
-        app = docker.build("alesblaze/customsql")
+        steps{
+            script{
+                docker.withServer('tcp://13.58.59.209:2375') {
+                    app = docker.build("alesblaze/customsql")
+                    sh 'built image'
+                }
+            }
+        }
     }
 
     stage('Test image') {
