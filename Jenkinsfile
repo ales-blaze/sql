@@ -10,20 +10,18 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-                docker.withServer('tcp://13.58.59.209:2375') {
                     app = docker.build("alesblaze/customsql")
-                    // app.inside {
-                        // sh 'echo "built image"'
-                    // }
-                }
+                    app.inside {
+                        sh 'echo "built image"'
+                    }
     }
 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
-        // app.inside {
-            // sh 'echo "Tests passed"'
-        // }
+         app.inside {
+             sh 'echo "Tests passed"'
+         }
     }
 
     stage('Push image') {
@@ -31,11 +29,9 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-         docker.withServer('tcp://13.58.59.209:2375') {
             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') {
                 app.push("${env.BUILD_NUMBER}")
                 app.push("latest")
             }
-         }
     }
 }
