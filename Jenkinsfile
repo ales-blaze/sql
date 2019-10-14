@@ -34,4 +34,8 @@ node {
                 app.push("latest")
             }
     }
+    
+    stage('Deploy to K8s'){
+        sh "  ansible-playbook -i /home/alesblaze/pb/hosts /home/alesblaze/pb/ansibledeploy2.yaml "
+    }
 }
