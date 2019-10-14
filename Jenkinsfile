@@ -36,6 +36,6 @@ node {
     }
     
     stage('Deploy to K8s'){
-        sh "  ansible-playbook -i /home/alesblaze/pb/hosts /home/alesblaze/pb/ansibledeploy2.yaml "
+        sh "  ansible-playbook -i /opt/playbook/hosts /opt/playbook/ansibledeploy2.yaml "
     }
 }
