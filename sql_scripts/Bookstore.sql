@@ -16,3 +16,4 @@ insert into book values (1234 , 'effective java' , 'john' , 100);
 insert into book values (14 , 'effective ' , 'jon' , 10);
 insert into book values(12,'sample' , 'don' , 12);
 insert into book values(16,'first' , 'last' , 40);
+insert into book values(26,'fiasda' , 'lasat' , 940);
