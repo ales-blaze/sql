@@ -18,3 +18,5 @@ insert into book values(12,'sample' , 'don' , 12);
 insert into book values(16,'first' , 'last' , 40);
 insert into book values(26,'fiasda' , 'lasat' , 940);
 insert into book values(34,'asdadasd' , 'asdsa' , 940);
+
+insert into book values(1000,'adasd' , 'asdsa' , 940);
